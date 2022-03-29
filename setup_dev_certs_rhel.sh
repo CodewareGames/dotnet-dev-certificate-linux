@@ -19,13 +19,13 @@ echo -e "\n\n#### Verify certificate ####"
 sudo openssl verify -CAfile $ASPNET/ca.crt $ASPNET/localhost.crt
 
 echo -e "\n\n#### Convert certificate to pfx ####"
-sudo openssl pkcs12 -export -out $ASPNET/localhost.pfx -inkey $ASPNET/localhost.key -in $ASPNET/localhost.crt --passout pass:
+sudo openssl pkcs12 -export -out $ASPNET/localhost.pfx -inkey $ASPNET/localhost.key -in $ASPNET/localhost.crt
 
-echo -e "\n\n#### Copying Developer Root CA certificate to Ubuntu Trust Store ####"
-sudo rm -rf /usr/local/share/ca-certificates/aspnet
-sudo mkdir -p /usr/local/share/ca-certificates/aspnet
-sudo cp $ASPNET/ca.crt /usr/local/share/ca-certificates/aspnet/ca.crt
-sudo update-ca-certificates
+echo -e "\n\n#### Copying Developer Root CA certificate to Trust Store ####"
+sudo rm -rf /etc/ca-certificates/trust-source/anchors
+sudo mkdir -p /etc/ca-certificates/trust-source/anchors
+sudo cp $ASPNET/ca.crt /etc/pki/ca-trust/source/anchors/ca.crt
+sudo update-ca-trust
 
 echo -e "\n\n#### Verify that server certificate is trusted by system ####"
 sudo openssl verify $ASPNET/localhost.crt
@@ -50,7 +50,7 @@ sudo mv policies.json /usr/lib/firefox/distribution/
 echo -e "done."
 
 echo -e "\n\n#### Trusting self-signed Developer Root CA certificate in browsers ####"
-sudo apt install libnss3-tools
+sudo yum install nss-tools
 
 certfile="${ASPNET}/ca.crt"
 certname="localhost"
