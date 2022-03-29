@@ -15,6 +15,7 @@ developers this script was created.
 
 Tested with:
 * Ubuntu 20.04 and .NET 5.0
+* Centos 7.9 and .NET 5.0
 * Arch Linux (5.12.14-arch1-1) and .NET 5.0
 
 ## What will it do?
@@ -26,23 +27,63 @@ Tested with:
    --trust' to use it **without** any custom configuration of Kestrel in e.g.
    appsettings.json
 
-## How To
+<h1>Debian Distros (Debian, Ubuntu, etc)</h1>
 
-# Ubuntu
 Clone or download this git repository and make the script corresponding to your system executable.
+
 ```shell
-chmod +x ./setup_dev_certs_ubuntu.sh
+chmod +x ./setup_dev_certs_debian.sh
 ```
 Execute the script
 ```shell
-./setup_dev_certs_ubuntu.sh
+./setup_dev_certs_debian.sh
 ```
 
 You will also be asked to enter your sudo password, as adding the certificate to the trust store requires
 elevated privileges.
 
-## Dependencies
+## Debian Dependencies
 - libnss3-tools (script will ask you to install if not found on your system)
+- dotnet SDK (you should already have this)
+
+
+<h1>RHEL Distros (Centos, Fedora, Oracle Linux, etc..)</h1>
+
+Clone or download this git repository and make the script corresponding to your system executable.
+
+```shell
+chmod +x ./setup_dev_certs_rhel.sh
+```
+Execute the script
+```shell
+./setup_dev_certs_rhel.sh
+```
+
+You will also be asked to enter your sudo password, as adding the certificate to the trust store requires
+elevated privileges.
+
+## RHEL Dependencies
+- nss-tools (script will ask you to install if not found on your system)
+- dotnet SDK (you should already have this)
+
+
+<h1>ARCH Distros (Manjaro, ArcoLinux, EndeavourOS, etc..)</h1>
+
+Clone or download this git repository and make the script corresponding to your system executable.
+
+```shell
+chmod +x ./setup_dev_certs_arch.sh
+```
+Execute the script
+```shell
+./setup_dev_certs_arch.sh
+```
+
+You will also be asked to enter your sudo password, as adding the certificate to the trust store requires
+elevated privileges.
+
+## ARCH Dependencies
+- nss (script will ask you to install if not found on your system)
 - dotnet SDK (you should already have this)
 
 # References
